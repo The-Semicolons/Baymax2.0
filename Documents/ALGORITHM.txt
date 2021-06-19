@@ -1,0 +1,90 @@
+Start
+SplashScreen.Open()
+Import Libraries
+if ImportError then {
+    Show(Error)
+    abort
+}
+Import Datasets
+if ImportError then {
+    Show(Error)
+    abort
+}
+Import AI Model
+if ImportError then {
+    Show(Error)
+    abort
+}
+Database.Connect()
+if ConnectionError then {
+    Show(Error)
+    abort
+}
+GoogleApi.Connect()
+if ConnectionError then {
+    Show(Error)
+    abort
+}
+Class.Initialise()
+SplashScreen.Close()
+ChatbotScreen.Open()
+while true {
+    gender = DetectGender{
+        Camera.Open()
+        image = Camera.ClickImage()
+        Camera.Close()
+        image = Process(image)
+        gender = NeuralNetwork(image)
+        if gender is "male"
+            return "male"
+        else
+            return "female"
+    }
+    if gender is "male" then
+        Chatbot.voice = "male"
+    else
+        Chatbot.voice = "female"
+    Chatbot.Language = "Hindi"
+    While Questions in KnowledgeBag or PatientData is Complete {
+        Chatbot.Show("Question")
+        Chatbot.Speak("Question")
+        Answer = Chatbot.Listen()
+        AnswerText = GoogleApi(Answer)
+        Information = ExtractInformation(AnswerText)
+        PatientData.add(Information)
+    }
+    patientreports = Database.Reports.Get("PatientName")
+    CheckAnomaly(patientreports)
+    if anomaly then{
+        graph = PlotGraph(patientreports)
+        chatbot.show(graph)
+        PatientData.add(anomaly)
+    }
+    disease = DiseasePredictor{
+        Process(PatientData)
+        DiseaseList = DeepNeuralNetwork.Predict(PatientData)
+        disease = MostProbableDisease(DiseaseList)
+        PatientData.add(disease)
+        return disease
+    }
+    treatment = TreatmentProcessor(
+        medicine = PredictMedicine(PatientData)
+        labtest = PredictTest(PatientData)
+        if labtest then
+            PatientData.add(labtest)
+        PatientData.add(medicine)
+        return medicine, labtest
+    )
+    Chatbot.show(treatment)
+    Chatbot.speak(treatment)
+    PrintPrescription(PatientData)
+    Database.add(PatientData)
+    if NextPatient then
+        pass
+    else
+        exit
+}
+Database.DisConnect()
+if disconnectionError then 
+    Show(Error)
+Stop

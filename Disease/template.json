@@ -1,0 +1,33 @@
+{ 
+    "diagnosis": {
+        "symptom_count": 4,
+        "symptom": [
+        ],
+        "rarity": ,
+        "gender": ,
+        "female": {
+            "menstruation": ,
+            "pregnancy": 
+        },
+        "age": {
+            "start": ,
+            "end": 
+        },
+        "std": ,
+        "family_related": ,
+        "fever": ,
+        "smoking": ,
+        "alcohol": 
+    },
+    "treatment": {
+        "lab_tests_count": ,
+        "tests": [
+        ],
+        "medicine_count": ,
+        "medicine": [
+        ],
+        "self_care_count": ,
+        "self_care": [
+        ]
+    }
+}

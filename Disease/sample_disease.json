@@ -1,0 +1,47 @@
+{ 
+    "diagnosis": {
+        "symptom_count": 4,
+        "symptom": [
+            "symptom 1",
+            "symptom 2",
+            "symptom 3",
+            "symptom 4"
+        ],
+        "rarity": 10000000,
+        "gender": "M/F/N",
+        "female": {
+            "menstruation": true,
+            "pregnancy": false
+        },
+        "age": {
+            "start": 0,
+            "end": 18
+        },
+        "std": false,
+        "family_related": true,
+        "fever": "H/L/0",
+        "smoking": true,
+        "alcohol": true
+    },
+    "treatment": {
+        "lab_tests_count": 5,
+        "tests": [
+            "lab test 1",
+            "lab test 2",
+            "lab test 3",
+            "lab test 4",
+            "lab test 5"
+        ],
+        "medicine_count": 3,
+        "medicine": [
+            "medicine 1",
+            "medicine 2",
+            "medicine 3"
+        ],
+        "self_care_count": 2,
+        "self_care": [
+            "self care 1",
+            "self care 2"
+        ]
+    }
+}
